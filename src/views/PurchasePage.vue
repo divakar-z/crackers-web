@@ -13,7 +13,7 @@
             </p>
           </v-col>
           <v-col cols="12" md="6" class="text-md-right">
-            <v-btn x-large color="white" light class="primary--text font-weight-bold rounded-lg elevation-4" to="/cart">
+            <v-btn x-large color="white" light class="secondary--text font-weight-bold rounded-lg elevation-4" @click="$store.dispatch('ui/openCart')">
               <v-badge :content="cartItemCount" :value="cartItemCount > 0" color="accent" inline overlap>
                 <v-icon left>mdi-cart</v-icon>
               </v-badge>
@@ -33,7 +33,7 @@
       >
         <div class="d-flex align-center">
           <div class="gift-icon-wrapper mr-4">
-            <v-icon color="accent" size="32">mdi-gift</v-icon>
+            <v-icon color="primary" size="32">mdi-gift</v-icon>
           </div>
           <div>
             <div class="text-h6 font-weight-bold grey--text text--darken-3">
@@ -46,12 +46,12 @@
           <v-spacer></v-spacer>
           <v-progress-circular
             :value="60"
-            color="accent"
+            color="primary"
             size="50"
             width="4"
             class="d-none d-sm-flex"
           >
-            <v-icon color="accent" small>mdi-star</v-icon>
+            <v-icon color="primary" small>mdi-star</v-icon>
           </v-progress-circular>
         </div>
       </v-alert>
@@ -61,67 +61,18 @@
     <section class="py-12 px-4 bg-light">
       <v-container fluid>
         <v-row>
-          <!-- Sidebar Filters -->
-          <v-col cols="12" md="3" class="d-none d-md-block">
-            <div class="sticky-filter">
-              <h4 class="text-overline grey--text mb-4">{{ $t('purchase.categories') }}</h4>
-              <v-list flat color="transparent" class="pa-0">
-                <v-list-item-group v-model="activeCategoryIndex" color="primary">
-                  <v-list-item 
-                    class="rounded-lg mb-2"
-                    @click="activeCategory = null"
-                  >
-                    <v-list-item-icon><v-icon>mdi-view-grid-outline</v-icon></v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title class="font-weight-medium">{{ $t('purchase.all_products') }}</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-
-                  <v-list-item 
-                    v-for="cat in categories" 
-                    :key="cat.slug"
-                    class="rounded-lg mb-2"
-                    @click="activeCategory = cat.slug"
-                  >
-                    <v-list-item-icon><v-icon>mdi-firework</v-icon></v-list-item-icon>
-                    <v-list-item-content>
-                      <v-list-item-title class="font-weight-medium">{{ $t(`categories.${cat.slug}`) }}</v-list-item-title>
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list-item-group>
-              </v-list>
-
-              <v-divider class="my-6"></v-divider>
-
-              <h4 class="text-overline grey--text mb-4">{{ $t('purchase.sort') }}</h4>
-              <v-select
-                v-model="sortBy"
-                :items="sortOptions"
-                item-text="text"
-                item-value="value"
-                outlined
-                rounded
-                dense
-                background-color="white"
-              ></v-select>
-            </div>
-          </v-col>
-
           <!-- Products Grid -->
-          <v-col cols="12" md="9">
-            <!-- Mobile Filters & Title -->
-            <div class="d-md-none mb-6">
-              <v-select
-                v-model="activeCategory"
-                :items="categoryOptions"
-                item-text="text"
-                item-value="value"
-                outlined
-                rounded
-                dense
-                label="Select Category"
-                background-color="white"
-              ></v-select>
+          <v-col cols="12">
+            <!-- Category chips -->
+            <div class="chip-row mb-6">
+              <v-chip
+                v-for="opt in categoryOptions"
+                :key="String(opt.value)"
+                :color="activeCategory === opt.value ? 'primary' : 'white'"
+                :dark="activeCategory === opt.value"
+                class="mr-2 mb-2 font-weight-medium"
+                @click="activeCategory = opt.value"
+              >{{ opt.text }}</v-chip>
             </div>
 
             <div class="d-flex align-center justify-space-between mb-8">
@@ -129,16 +80,18 @@
                 {{ activeCategoryName }}
                 <span class="text-body-2 font-weight-medium grey--text ml-2">({{ filteredProducts.length }} items)</span>
               </h2>
-              <div class="d-none d-md-block" style="width: 200px;">
-                <v-text-field
-                  placeholder="Search crackers..."
-                  prepend-inner-icon="mdi-magnify"
+              <div style="width: 200px;">
+                <v-select
+                  v-model="sortBy"
+                  :items="sortOptions"
+                  item-text="text"
+                  item-value="value"
                   dense
                   hide-details
                   outlined
                   rounded
                   background-color="white"
-                ></v-text-field>
+                ></v-select>
               </div>
             </div>
 
@@ -152,9 +105,9 @@
             <!-- Products -->
             <v-row v-else-if="filteredProducts.length > 0">
               <v-col 
-                cols="6" 
-                sm="4" 
-                lg="3" 
+                cols="12" 
+                sm="6" 
+                md="4" 
                 v-for="product in filteredProducts" 
                 :key="product.id"
                 class="animate-in"
@@ -247,7 +200,7 @@ export default {
 
 <style scoped>
 .purchase-header {
-  background: linear-gradient(135deg, #C41E3A 0%, #1A1A2E 100%);
+  background: linear-gradient(135deg, #1F6B3A 0%, #0F3D24 100%);
   position: relative;
   overflow: hidden;
 }
@@ -272,11 +225,12 @@ export default {
 }
 
 .bg-light {
-  background-color: #f8f9fa;
+  background-color: #F1FAF4;
 }
+.chip-row { display: flex; flex-wrap: wrap; }
 
 .gift-icon-wrapper {
-  background: rgba(255, 107, 53, 0.1);
+  background: rgba(31, 138, 76, 0.1);
   padding: 12px;
   border-radius: 12px;
 }

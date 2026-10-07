@@ -118,7 +118,7 @@ export default {
 
 <style scoped>
 .about-hero {
-  background: linear-gradient(135deg, #C41E3A 0%, #1A1A2E 100%);
+  background: linear-gradient(135deg, #1F6B3A 0%, #0F3D24 100%);
   position: relative;
   overflow: hidden;
 }
@@ -126,13 +126,13 @@ export default {
 .hero-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-image: radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%);
+  background-image: radial-gradient(circle at 80% 20%, rgba(31, 107, 58, 0.15) 0%, transparent 50%);
 }
 
-.bg-light { background-color: #fbfbfb; }
+.bg-light { background-color: #F1FAF4; }
 
 .stats-section {
-  background: #1A1A2E;
+  background: #0F3D24;
   position: relative;
 }
 

@@ -130,7 +130,7 @@ export default {
 
 <style scoped>
 .safety-header {
-  background: linear-gradient(135deg, #1A1A2E 0%, #28A745 100%);
+  background: linear-gradient(135deg, #0F3D24 0%, #2E9B50 100%);
   position: relative;
   overflow: hidden;
 }
@@ -141,7 +141,7 @@ export default {
   background-image: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
 }
 
-.bg-light { background-color: #fbfbfb; }
+.bg-light { background-color: #F1FAF4; }
 
 .icon-circle {
   width: 60px;
@@ -159,7 +159,7 @@ export default {
 .border-error { border-top: 6px solid #F44336 !important; }
 
 .responsibility-section {
-  background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+  background: linear-gradient(135deg, #0F3D24 0%, #14502E 100%);
   position: relative;
 }
 

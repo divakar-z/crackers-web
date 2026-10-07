@@ -121,6 +121,6 @@ export default {
 <style scoped>
 .fill-height {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+  background: linear-gradient(135deg, #0F3D24 0%, #14502E 100%);
 }
 </style>

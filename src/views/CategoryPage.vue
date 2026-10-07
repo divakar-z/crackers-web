@@ -185,7 +185,7 @@ export default {
 
 <style scoped>
 .category-header {
-  background: linear-gradient(135deg, #D4AF37 0%, #FF6B35 100%);
+  background: linear-gradient(135deg, #1F6B3A 0%, #2E9B50 100%);
 }
 
 .category-card {
@@ -194,7 +194,7 @@ export default {
 }
 
 .category-card:hover {
-  background: linear-gradient(135deg, #D4AF37 0%, #FF6B35 100%);
+  background: linear-gradient(135deg, #1F6B3A 0%, #2E9B50 100%);
 }
 
 .category-card:hover .v-icon,

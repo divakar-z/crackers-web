@@ -3,45 +3,80 @@
     <!-- Hero Section -->
     <section class="hero-section">
       <div class="hero-overlay"></div>
-      <v-container fill-height>
-        <v-row align="center" justify="center" class="hero-content py-16">
-          <v-col cols="12" md="8" class="text-center animate-up">
-            <div class="hero-chip mb-6 d-inline-block">
-              <v-chip color="rgba(255,255,255,0.2)" dark label class="px-6 font-weight-bold">
-                ✨ SIVAKASI'S FINEST CRACKERS
-              </v-chip>
-            </div>
-            <h1 class="text-h2 text-md-h1 font-weight-black white--text mb-6 hero-title">
-              {{ $t('home.title') }}
+      <v-container class="hero-container">
+        <v-row align="center" class="hero-content py-12">
+          <v-col cols="12" md="7" class="animate-up">
+            <v-chip small label class="hero-chip mb-5 font-weight-bold">
+              <v-icon left x-small color="accent">mdi-star</v-icon>
+              Sivakasi's Finest Crackers
+            </v-chip>
+            <h1 class="hero-title font-weight-black white--text mb-4">
+              Premium Crackers at <span class="hero-accent">Best Prices</span>
             </h1>
-            <p class="text-h6 text-md-h5 white--text mb-10 hero-subtitle">
-              {{ $t('home.subtitle') }}
+            <p class="hero-subtitle white--text mb-6">
+              Quality firecrackers from the heart of Sivakasi — up to 80% off with free gifts on bulk orders!
             </p>
-            <div class="d-flex flex-wrap justify-center gap-4">
-              <v-btn x-large color="white" light class="primary--text font-weight-bold px-10 rounded-lg hover-scale" to="/purchase">
+            <div class="hero-stats d-flex mb-8">
+              <div v-for="stat in heroStats" :key="stat.label" class="hero-stat mr-8">
+                <div class="hero-stat-value accent--text">{{ stat.value }}</div>
+                <div class="hero-stat-label white--text">{{ stat.label }}</div>
+              </div>
+            </div>
+            <div class="d-flex flex-wrap hero-actions">
+              <v-btn large color="accent" class="secondary--text font-weight-bold px-8 mr-3 mb-2" to="/purchase">
                 <v-icon left>mdi-shopping</v-icon>
                 {{ $t('home.shop_now') }}
               </v-btn>
-              <v-btn x-large outlined dark class="px-10 rounded-lg" to="/contact">
+              <v-btn large outlined dark class="px-8 mb-2" to="/contact">
                 <v-icon left>mdi-whatsapp</v-icon>
-                Contact Us
+                WhatsApp
               </v-btn>
+            </div>
+          </v-col>
+
+          <!-- Floating offer badges -->
+          <v-col cols="12" md="5" class="d-flex flex-column align-md-end">
+            <div class="logo-seal mb-6 align-self-center">
+              <v-icon size="56" color="accent">mdi-firework</v-icon>
+              <div class="logo-seal-text">Dhanalakshmi<br>Crackers</div>
+            </div>
+            <div
+              v-for="tier in discountTiers"
+              :key="tier.amount"
+              class="offer-pill mb-3"
+            >
+              <span class="offer-dot" :style="{ background: tier.dot }"></span>
+              <strong>{{ tier.discount }}% OFF</strong>
+              above ₹{{ tier.amount.toLocaleString('en-IN') }}
             </div>
           </v-col>
         </v-row>
       </v-container>
-      
-      <!-- Statistics/Trust Badges -->
-      <div class="hero-badges py-6">
-        <v-container>
-          <v-row justify="center">
-            <v-col cols="6" sm="3" v-for="badge in trustBadges" :key="badge.text" class="text-center">
-              <v-icon color="white" size="32" class="mb-2">{{ badge.icon }}</v-icon>
-              <div class="white--text font-weight-bold">{{ badge.text }}</div>
-            </v-col>
-          </v-row>
-        </v-container>
-      </div>
+    </section>
+
+    <!-- Our Products / Offer tiers -->
+    <section class="products-section py-12">
+      <v-container>
+        <div class="text-center mb-10">
+          <v-chip small label class="section-chip mb-3 font-weight-bold">Wholesale Offers</v-chip>
+          <h2 class="section-title mb-2">Our Products</h2>
+          <p class="section-sub mb-0">Explore our wide range of quality firecrackers at the best prices</p>
+        </div>
+        <v-row>
+          <v-col cols="12" md="4" v-for="tier in discountTiers" :key="tier.amount">
+            <v-card class="tier-card pa-6" outlined to="/purchase">
+              <div class="tier-icon mb-4" :style="{ background: tier.dot }">
+                <v-icon color="white">{{ tier.icon }}</v-icon>
+              </div>
+              <div class="text-body-2 grey--text text--darken-1">Above ₹{{ tier.amount.toLocaleString('en-IN') }}</div>
+              <h3 class="tier-discount mb-3">{{ tier.discount }}% OFF</h3>
+              <v-chip small label :color="tier.dot" dark class="font-weight-bold">
+                <v-icon left x-small>mdi-gift</v-icon> Free {{ tier.gift }}
+              </v-chip>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
     </section>
 
     <!-- Welcome Section -->
@@ -78,35 +113,6 @@
                   </div>
                 </div>
               </v-img>
-            </v-card>
-          </v-col>
-        </v-row>
-      </v-container>
-    </section>
-
-    <!-- Discount Tiers Section -->
-    <section class="discount-section py-16">
-      <v-container>
-        <v-row justify="center" class="mb-12">
-          <v-col cols="12" md="8" class="text-center">
-            <h2 class="text-h3 font-weight-bold white--text mb-4">
-              🎉 Exclusive Wholesale Offers
-            </h2>
-            <p class="text-h6 white--text opacity-80">Bulk orders enjoy massive savings & free gifts!</p>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="12" md="4" v-for="tier in discountTiers" :key="tier.amount">
-            <v-card class="discount-card-premium pa-8 text-center" :class="tier.class">
-              <div class="tier-icon mb-6">
-                <v-icon size="64" :color="tier.iconColor">{{ tier.icon }}</v-icon>
-              </div>
-              <h3 class="text-h4 font-weight-black mb-2">{{ tier.discount }}% OFF</h3>
-              <div class="text-h6 mb-6 opacity-80">Orders above ₹{{ tier.amount.toLocaleString('en-IN') }}</div>
-              <v-divider dark class="mb-6 opacity-20"></v-divider>
-              <div class="text-subtitle-1 mb-2">FREE GIFT:</div>
-              <v-chip class="font-weight-bold" :color="tier.giftColor" dark>{{ tier.gift }}</v-chip>
             </v-card>
           </v-col>
         </v-row>
@@ -164,11 +170,10 @@ export default {
   name: 'HomePage',
   data() {
     return {
-      trustBadges: [
-        { icon: 'mdi-truck-delivery', text: 'Fast Shipping' },
-        { icon: 'mdi-shield-check', text: 'Safe Handling' },
-        { icon: 'mdi-certificate', text: 'Quality Assured' },
-        { icon: 'mdi-cash-multiple', text: 'Best Price' }
+      heroStats: [
+        { value: '200+', label: 'Products' },
+        { value: '500+', label: 'Happy Customers' },
+        { value: '80%', label: 'Max Discount' }
       ],
       features: [
         'Premium Quality Raw Materials',
@@ -179,9 +184,9 @@ export default {
         'Across India Delivery'
       ],
       discountTiers: [
-        { amount: 3000, discount: 50, gift: '100 Wala', icon: 'mdi-tag', iconColor: 'success', giftColor: 'success', class: 'tier-silver' },
-        { amount: 5000, discount: 70, gift: '500 Wala', icon: 'mdi-star', iconColor: 'warning', giftColor: 'warning', class: 'tier-gold' },
-        { amount: 10000, discount: 80, gift: '1000 Wala', icon: 'mdi-trophy', iconColor: 'error', giftColor: 'error', class: 'tier-platinum' }
+        { amount: 3000, discount: 50, gift: '100 Wala', icon: 'mdi-tag', dot: '#1F8A4C' },
+        { amount: 5000, discount: 70, gift: '500 Wala', icon: 'mdi-star', dot: '#F5B800' },
+        { amount: 10000, discount: 80, gift: '1000 Wala', icon: 'mdi-trophy', dot: '#E5484D' }
       ]
     }
   },
@@ -194,105 +199,60 @@ export default {
 <style scoped>
 .hero-section {
   position: relative;
-  background: linear-gradient(135deg, #1A1A2E 0%, #C41E3A 100%);
-  min-height: 85vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  background: linear-gradient(135deg, #0F3D24 0%, #1F6B3A 100%);
   overflow: hidden;
 }
-
 .hero-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 70%, rgba(255, 107, 53, 0.1) 0%, transparent 50%);
-  z-index: 1;
+  position: absolute; inset: 0; z-index: 1;
+  background-image: radial-gradient(circle at 15% 25%, rgba(245, 184, 0, 0.12) 0%, transparent 45%),
+                    radial-gradient(circle at 85% 75%, rgba(46, 155, 80, 0.35) 0%, transparent 50%);
 }
-
-.hero-content {
-  position: relative;
-  z-index: 2;
+.hero-container, .hero-content { position: relative; z-index: 2; }
+.hero-chip { background: rgba(255, 255, 255, 0.14) !important; color: #fff !important; }
+.hero-title { font-size: 3rem; line-height: 1.1; }
+.hero-accent { color: #F5B800; }
+.hero-subtitle { opacity: 0.85; max-width: 520px; font-size: 1.05rem; }
+.hero-stat-value { font-size: 1.6rem; font-weight: 800; }
+.hero-stat-label { font-size: 0.8rem; opacity: 0.8; }
+.logo-seal {
+  width: 150px; height: 150px; border-radius: 50%;
+  border: 3px solid #F5B800;
+  background: rgba(255, 255, 255, 0.08);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #fff; text-align: center; font-weight: 700; font-size: 0.8rem;
 }
-
-.hero-badges {
-  background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(5px);
-  position: relative;
-  z-index: 2;
+.offer-pill {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff; border-radius: 999px; padding: 8px 18px; font-size: 0.9rem;
+  backdrop-filter: blur(6px);
 }
+.offer-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 8px; }
 
-.hero-title {
-  line-height: 1.1;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+.products-section { background: #F1FAF4; }
+.section-chip { background: rgba(31, 138, 76, 0.12) !important; color: #1F8A4C !important; }
+.section-title { font-size: 2rem; font-weight: 800; color: #0F3D24; }
+.section-sub { color: #5b6b62; }
+.tier-card {
+  border-radius: 18px !important;
+  border: 1px solid rgba(15, 61, 36, 0.1) !important;
+  transition: all 0.25s ease;
 }
+.tier-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(15, 61, 36, 0.12) !important; }
+.tier-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.tier-discount { font-size: 1.8rem; font-weight: 800; color: #0F3D24; }
 
-.hero-subtitle {
-  opacity: 0.9;
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.discount-section {
-  background: #1A1A2E;
-  position: relative;
-}
-
-.discount-card-premium {
-  border-radius: 24px !important;
-  background: rgba(255, 255, 255, 0.05) !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: white !important;
-  transition: all 0.4s ease;
-}
-
-.discount-card-premium:hover {
-  transform: translateY(-12px);
-  background: rgba(255, 255, 255, 0.08) !important;
-  border-color: rgba(212, 175, 55, 0.4) !important;
-}
-
-.tier-gold { border-bottom: 4px solid #D4AF37 !important; }
-.tier-silver { border-bottom: 4px solid #C0C0C0 !important; }
-.tier-platinum { border-bottom: 4px solid #E5E4E2 !important; }
-
-.category-circle-card {
-  border-radius: 20px !important;
-  transition: all 0.3s ease;
-}
-
-.category-circle-card:hover {
-  background: var(--v-primary-base) !important;
-  color: white !important;
-}
-
-.category-circle-card:hover .v-icon {
-  color: white !important;
-}
-
-.hover-scale:hover {
-  transform: scale(1.05);
-}
-
-.leading-relaxed {
-  line-height: 1.8;
-}
-
-.gap-4 {
-  gap: 16px;
-}
-
-.animate-up {
-  animation: fadeInUp 1s ease-out;
-}
-
+.category-circle-card { border-radius: 20px !important; transition: all 0.3s ease; }
+.category-circle-card:hover { background: var(--v-primary-base) !important; color: white !important; }
+.category-circle-card:hover .v-icon { color: white !important; }
+.hover-scale:hover { transform: scale(1.05); }
+.leading-relaxed { line-height: 1.8; }
+.animate-up { animation: fadeInUp 0.9s ease-out; }
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@media (max-width: 600px) {
+  .hero-title { font-size: 2.1rem; }
+}
 </style>
-
-

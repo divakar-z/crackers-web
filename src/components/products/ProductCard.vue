@@ -33,7 +33,8 @@
       <v-chip 
         v-if="discountInfo.percent > 0 && !product.isSoldOut" 
         class="discount-badge"
-        color="accent"
+        color="error"
+        dark
         small
         label
       >
@@ -55,7 +56,7 @@
       <!-- Price -->
       <div class="d-flex align-center justify-space-between">
         <div>
-          <span class="text-h6 font-weight-bold primary--text">
+          <span class="text-h6 font-weight-black secondary--text">
             ₹{{ product.price.toLocaleString('en-IN') }}
           </span>
           <span 
@@ -130,8 +131,9 @@ export default {
 <style scoped>
 .product-card {
   transition: all 0.3s ease;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
+  border-color: rgba(15, 61, 36, 0.1) !important;
 }
 
 .product-card:hover {

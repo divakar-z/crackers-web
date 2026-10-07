@@ -310,7 +310,7 @@ export default {
 
 <style scoped>
 .cart-header {
-  background: linear-gradient(135deg, #1A1A2E 0%, #C41E3A 100%);
+  background: linear-gradient(135deg, #0F3D24 0%, #1F6B3A 100%);
   position: relative;
   overflow: hidden;
 }
@@ -327,7 +327,7 @@ export default {
 }
 
 .bg-light {
-  background-color: #f8f9fa;
+  background-color: #F1FAF4;
 }
 
 .sticky-summary {
@@ -340,7 +340,7 @@ export default {
 }
 
 .item-card:hover {
-  border-color: rgba(212, 175, 55, 0.4) !important;
+  border-color: rgba(31, 107, 58, 0.4) !important;
 }
 
 .quantity-controller {

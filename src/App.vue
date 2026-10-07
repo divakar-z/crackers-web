@@ -8,12 +8,17 @@
 
     <AppFooter />
 
+    <CartDrawer />
+    <CheckoutDialog />
+    <PaymentDialog />
+    <LoginDialog />
+
     <!-- Cart Snackbar -->
     <v-snackbar v-model="showCartSnackbar" color="success" timeout="2000" bottom right>
       <v-icon left>mdi-check-circle</v-icon>
       Item added to cart!
       <template v-slot:action="{ attrs }">
-        <v-btn text v-bind="attrs" to="/cart">View Cart</v-btn>
+        <v-btn text v-bind="attrs" @click="openCart">View Cart</v-btn>
       </template>
     </v-snackbar>
   </v-app>
@@ -22,13 +27,21 @@
 <script>
 import AppHeader from '@/components/layout/AppHeader.vue'
 import AppFooter from '@/components/layout/AppFooter.vue'
+import CartDrawer from '@/components/cart/CartDrawer.vue'
+import CheckoutDialog from '@/components/cart/CheckoutDialog.vue'
+import PaymentDialog from '@/components/cart/PaymentDialog.vue'
+import LoginDialog from '@/components/layout/LoginDialog.vue'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
   components: {
     AppHeader,
-    AppFooter
+    AppFooter,
+    CartDrawer,
+    CheckoutDialog,
+    PaymentDialog,
+    LoginDialog
   },
   data() {
     return {
@@ -43,7 +56,8 @@ export default {
   methods: {
     ...mapActions('settings', ['initSettings']),
     ...mapActions('auth', ['initAuthListener']),
-    ...mapActions('products', ['fetchProducts'])
+    ...mapActions('products', ['fetchProducts']),
+    ...mapActions('ui', ['openCart'])
   },
   mounted() {
     // Listen for cart add events
@@ -65,7 +79,7 @@ export default {
 }
 
 .v-application {
-  background: #FFF8F0 !important;
+  background: #F1FAF4 !important;
 }
 
 /* Glassmorphism Effect */
@@ -90,17 +104,17 @@ export default {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #D4AF37, #C41E3A);
+  background: linear-gradient(to bottom, #2E9B50, #0F3D24);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #B8860B;
+  background: #1F6B3A;
 }
 
 /* Festive gradient text */
 .festive-gradient {
-  background: linear-gradient(135deg, #D4AF37, #C41E3A);
+  background: linear-gradient(135deg, #1F8A4C, #0F3D24);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -118,14 +132,14 @@ export default {
 /* Premium Card Style */
 .premium-card {
   border-radius: 16px !important;
-  border: 1px solid rgba(212, 175, 55, 0.2) !important;
+  border: 1px solid rgba(31, 107, 58, 0.2) !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .premium-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(212, 175, 55, 0.2) !important;
+  box-shadow: 0 15px 40px rgba(31, 107, 58, 0.2) !important;
 }
 
 /* Button Animations */

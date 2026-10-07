@@ -136,7 +136,7 @@ export default {
 
 <style scoped>
 .contact-header {
-  background: linear-gradient(135deg, #1A1A2E 0%, #C41E3A 100%);
+  background: linear-gradient(135deg, #0F3D24 0%, #1F6B3A 100%);
   position: relative;
   overflow: hidden;
 }
@@ -144,11 +144,11 @@ export default {
 .hero-overlay {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
-  background-image: radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+  background-image: radial-gradient(circle at 10% 20%, rgba(31, 107, 58, 0.1) 0%, transparent 50%);
 }
 
-.bg-light { background-color: #f8f9fa; }
-.bg-dark { background-color: #1A1A2E; }
+.bg-light { background-color: #F1FAF4; }
+.bg-dark { background-color: #0F3D24; }
 
 .icon-circle {
   width: 80px;
@@ -159,7 +159,7 @@ export default {
   border-radius: 50%;
 }
 
-.bg-primary-light { background-color: rgba(212, 175, 55, 0.1); }
+.bg-primary-light { background-color: rgba(31, 107, 58, 0.1); }
 .bg-success-light { background-color: rgba(76, 175, 80, 0.1); }
 .bg-accent-light { background-color: rgba(255, 107, 53, 0.1); }
 
@@ -180,7 +180,7 @@ export default {
   50% { transform: translateY(-10px); }
 }
 
-.bg-light { background-color: #fbfbfb; }
+.bg-light { background-color: #F1FAF4; }
 
 .opacity-80 { opacity: 0.8; }
 </style>

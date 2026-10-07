@@ -10,24 +10,22 @@ export default new Vuetify({
     dark: false,
     themes: {
       light: {
-        primary: '#D4AF37',      // Gold
-        secondary: '#B8860B',    // Dark Golden Rod
-        accent: '#FF6B35',       // Festive Orange
-        error: '#DC3545',
-        warning: '#FFC107',
-        info: '#17A2B8',
-        success: '#28A745',
-        background: '#FFF8F0',   // Warm cream
-        surface: '#FFFFFF',
-        festiveRed: '#C41E3A',   // Festive Red
-        festiveGold: '#FFD700',  // Bright Gold
+        primary: '#1F8A4C',      // Brand green
+        secondary: '#0F3D24',    // Forest green
+        accent: '#F5B800',       // Gold highlight
+        error: '#E5484D',
+        warning: '#F5B800',
+        info: '#2F80ED',
+        success: '#1F8A4C',
+        background: '#F1FAF4',   // Mint white
+        surface: '#FFFFFF'
       },
       dark: {
-        primary: '#FFD700',
-        secondary: '#D4AF37',
-        accent: '#FF6B35',
-        background: '#1A1A2E',
-        surface: '#16213E',
+        primary: '#34C26E',
+        secondary: '#0F3D24',
+        accent: '#F5B800',
+        background: '#0F3D24',
+        surface: '#14502E'
       }
     }
   },

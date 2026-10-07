@@ -5,6 +5,8 @@ const state = {
 
 const getters = {
   cartItems: state => state.items,
+
+  customerPhone: state => state.customerPhone,
   
   cartItemCount: state => {
     return state.items.reduce((total, item) => total + item.quantity, 0)

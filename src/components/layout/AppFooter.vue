@@ -102,7 +102,7 @@ export default {
 
 <style scoped>
 .footer-section {
-  background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%) !important;
+  background: #1F5B38 !important;
   position: relative;
   overflow: hidden;
 }
@@ -114,11 +114,11 @@ export default {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, #D4AF37, #C41E3A, #D4AF37);
+  background: linear-gradient(90deg, #2E9B50, #F5B800, #2E9B50);
 }
 
 .contact-info a:hover {
-  color: #D4AF37 !important;
+  color: #F5B800 !important;
   text-decoration: underline !important;
 }
 
